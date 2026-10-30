@@ -1,0 +1,16 @@
+<section class="hero" (mousemove)="ripple($event)">
+
+  <!-- الخلفية -->
+  <img class="bg" [src]="backgroundhome" alt="Home Background">
+ 
+  <div class="overlay"> 
+  </div>
+
+  <!-- ripple -->
+  <span class="ripple"
+        *ngFor="let r of ripples"
+        [style.left.px]="r.x"
+        [style.top.px]="r.y">
+  </span>
+
+</section>

@@ -1,0 +1,204 @@
+<div class="services-page">
+
+
+  <div class="location-box" *ngIf="step === 1">
+
+  <h3 class="section-title">📍 Choose Your Location First</h3>
+
+  <button (click)="getLocation()">
+    Detect My Location
+  </button>
+
+  <p class="section-title" *ngIf="userLocation">
+    📌 Your Area: {{ userLocation }}
+  </p>
+
+</div>
+  <!-- STEP 1: Gender -->
+  <div *ngIf="step === 1" class="gender-screen">
+
+    <div class="gender-card male" (click)="selectGender('male')">
+      <div class="overlay"></div> 
+    </div>
+
+    <div class="gender-card female" (click)="selectGender('female')">
+      <div class="overlay"></div> 
+    </div>
+
+  </div>
+
+  <!-- STEP 2: Salons -->
+  <div *ngIf="step === 2">
+
+    <button class="back-btn" (click)="goBack()">← Back</button>
+
+    <h2 class="section-title">Choosing a salon</h2>
+
+    <div class="cards-container">
+      <div class="card"
+      debugger;
+           *ngFor="let salon of filteredSalons"
+           (click)="selectSalon(salon)">
+
+        <img [src]="salon.img">
+
+        <div class="card-body">
+          <div class="card-title">{{ salon.name }}</div>
+          <div class="card-sub">{{ salon.location }}</div>
+          <div class="card-sub">{{ salon.rating }}</div> 
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STEP 3: Services -->
+  <div *ngIf="step === 3">
+
+     <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <h2 class="section-title">Choosing services</h2>
+
+  <div class="cards-container">
+
+    <div class="card"
+         *ngFor="let s of selectedSalon.services"
+         (click)="toggleService(s)"
+         [class.selected]="isSelected(s)">
+
+      <div class="card-body">
+        <div class="card-title">{{ s.name }}</div>
+        <div class="card-sub">{{ s.price }} EGP</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button  class="search-btn"
+  [disabled]="selectedServices.length === 0"
+  (click)="step = 4">
+   Service confirmation ({{ totalPrice }} EGP)
+  </button>
+
+  </div>
+
+  <!-- STEP 4: Time -->
+  <div *ngIf="step === 4">
+
+    <button class="back-btn" (click)="goBack()">← Back</button>
+
+    <h2 class="section-title">Choosing a time</h2>
+
+        <div class="time-grid">
+
+  <div class="time"
+       *ngFor="let t of selectedSalon?.availability"
+       [class.selected]="selectedTime === t"
+       (click)="selectTime(t)">
+
+    {{ t }}
+
+  </div>
+
+</div>
+
+  </div>
+ 
+<div  *ngIf="step === 5">
+
+  <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <h2 class="section-title">Choosing a stylist</h2>
+
+  <div class="cards-container stylist-container">
+
+  <div class="card stylist-card"
+     *ngFor="let st of selectedSalon?.stylists"
+     (click)="selectStylist(st)"
+     [class.selected]="selectedStylist === st">
+
+  <div class="avatar">
+    <img [src]="st.img" />
+  </div>
+
+  <div class="stylist-info">
+    <h3>{{ st.name }}</h3>
+    <p>العمر: {{ st.age }}</p>
+    <p>{{ st.phone }}</p>
+  </div>
+
+</div>
+
+  </div>
+<div class="confirm-center">
+
+  <button class="search-btn" (click)="confirmBooking()">
+   Booking confirmation
+  </button>
+</div>
+
+</div>
+<div *ngIf="step === 6" class="success-wrapper">
+
+  <div class="success-card">
+
+    <div class="check-icon">✔</div>
+
+    <h2>Successfully Booked</h2>
+
+    <p class="sub">Your appointment is confirmed 🎉</p>
+
+    <div class="details">
+
+      <div><span>Booking No</span> <b>{{ bookingId }}</b></div>
+
+      <div><span>Salon</span> <b>{{ selectedSalon?.name }}</b></div>
+
+      <div><span>Services</span> <b>{{ selectedServices.length }}</b></div>
+
+      <div><span>Total</span> <b>{{ totalPrice }} EGP</b></div>
+
+      <div><span>Stylist</span> <b>{{ selectedStylist?.name }}</b></div>
+
+      <div><span>Time</span> <b>{{ selectedTime }}</b></div>
+
+    </div>
+
+    <button class="home-btn" (click)="restart()">
+      Back to Home
+    </button>
+
+    <p class="footer">Thank you for booking with us ❤️</p>
+
+  </div>
+
+</div>
+
+ <div class="summary-box" *ngIf="showSummary">
+
+  <h4> Booking Summary </h4>
+
+  <p *ngIf="selectedSalon">
+    🏪 {{ selectedSalon.name }}
+  </p>
+ 
+    <p *ngIf="selectedServices.length"> 
+    💇 Services: {{ selectedServices.length }}
+  </p>
+
+  <p *ngIf="selectedTime">
+    ⏰ {{ selectedTime }}
+  </p>
+
+  <p *ngIf="selectedStylist">
+    👤 {{ selectedStylist.name }}
+  </p>
+
+  <p>
+    💰 Total Price: {{ totalPrice }} EGP
+  </p>
+
+</div>
+</div>

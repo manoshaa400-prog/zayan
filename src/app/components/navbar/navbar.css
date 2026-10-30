@@ -1,0 +1,168 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+body {
+  padding-top: 80px;
+}
+:host {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  transition: 0.3s;
+}
+
+:host.scrolled {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  transition: 0.3s;
+}
+app-navbar.scrolled {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transform: translateY(0);
+}
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 50px;
+  z-index: 10;
+}
+.navbar {
+    backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  z-index: 1000;
+}   
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+} 
+ 
+ .nav-links {
+      font-size: larger; 
+  list-style: none;
+  display: flex;
+  gap: 30px;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+ .nav-links li a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* underline animation */
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #c59d5f;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active-link::after {
+  width: 100%;
+}
+.nav-links li a.active-link {
+  color: #c59d5f;
+  position: relative;
+}
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+
+ 
+.logo-container {
+            position: relative;
+            text-align: center;
+            user-select: none;
+        }
+
+        .wordmark {
+            font-size: 70px;
+            font-weight: 600;
+            color: #c59d5f; /* لون ذهبي أساسي */
+            /* تطبيق تدرج ذهبي لجعل الشكل "غالي" */
+            background: linear-gradient(to bottom, #e4c695 0%, #c59d5f 50%, #a17a42 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 15px;
+            line-height: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* تنسيق الخط المنحني (SVG) */
+        .fluid-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .tagline {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 300;
+            color: #c59d5f;
+            letter-spacing: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* إضافة لمعة خفيفة خلف اللوجو */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(197, 157, 95, 0.1) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 0;
+        }
+ 

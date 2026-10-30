@@ -1,0 +1,27 @@
+<div class="contact-container">
+
+  <h2>📩 Add Your Salon</h2>
+  <p>Register your salon and join our platform</p>
+
+  <div class="form">
+
+    <h3>👤 Owner Information</h3>
+
+    <input type="text" placeholder="Your Name" [(ngModel)]="userName">
+    <input type="text" placeholder="Phone" [(ngModel)]="userPhone">
+    <input type="email" placeholder="Email" [(ngModel)]="userEmail">
+
+    <h3>🏪 Salon Information</h3>
+
+    <input type="text" placeholder="Salon Name" [(ngModel)]="salonName">
+    <input type="text" placeholder="Location" [(ngModel)]="salonLocation">
+
+    <textarea placeholder="Description" [(ngModel)]="salonDescription"></textarea>
+
+    <button (click)="submitRequest()">
+      Submit Salon
+    </button>
+
+  </div>
+
+</div>
